@@ -1,17 +1,18 @@
 // Blog.js
 
-const Blog = ({blogss, title, handleDel}) => {
+export const Blog = ({blogss, title}) => {
    
     return (
         <>
             {blogss.map((item) => (
                
-                <div key={item.id} className="m-0 mx-auto w-full bg-slate-600 text-white flex items-center justify-center flex-col p-4 my-2">{title}
-                   <div  className="bg-slate-600 ">
-                      <h1>{item.title} {item.id} - {item.name}</h1>
-                      <div className="w-full flex items-center justify-center">
-                           <button className="bg-green-500 text-white w-20 rounded" onClick={()=> handleDel(item.id)}>delete</button>
-                      </div>
+                <div key={item.id} className=" m-0 mx-auto w-80 bg-green-500 rounded text-white flex items-center justify-center h-52 flex-col p-4 my-2">
+                
+                    <h1 className="underline">{title}</h1>
+                   <div className=" flex flex-col items-center" >
+                      <h2 className=""> {item.id}: {item.title}  </h2>
+                      <h3>{item.category}</h3>
+                      
                    
                     </div>
                 </div>
@@ -26,5 +27,12 @@ const Blog = ({blogss, title, handleDel}) => {
         </>
     );
 };
+export const Pend = () => {
+    return (
+        <div className=" bg-slate-500 w-20 flex justify-center text-white rounded mt-6 m-0 mx-auto">Loading...</div> // Customize this message if needed
+    );
+};
 
-export default Blog;
+
+
+
