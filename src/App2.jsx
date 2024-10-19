@@ -2,45 +2,22 @@ import { useState } from "react";
 import { Blog, Pend } from './blog'; // This imports the named exports correctly
 
 import { useEffect } from "react";
+import useFetch from "./Chook";
 
 
 
 
 function App2(){
-    const [blogs, setBlogs]  = useState(null);
-    const [pending, setPending] = useState(true);
-    const [error, setError] = useState(null);
+    const {data: blogs, pending, error} = useFetch("https://dummyjson.com/products");
  
 
 
-     useEffect(()=>{
-        fetch("https://dummyjson.com/products")
-        .then(res=>{
-           
-            if(!res.ok){
-                throw new Error(`"Check the url -- ${res.url}"`);
-                
-            }
-            return res.json()})
-        .then( data => {setBlogs(data.products)
-            console.log(data.products)
-            setPending(false);
-            setError(null);
-        }
-    ).catch(err=>{
-        setError(err.message);
-        setBlogs(null)
-        setPending(false);
-    })
-       
-       
-     },[])
 
     return (
         <>
         {error && <div className="m-48">{error}</div>}
         {pending && <Pend></Pend>}
-       { blogs &&< Blog blogss={blogs} title="BLOGS"/>} 
+        {blogs &&< Blog blogss={blogs} title="BLOGS"/>} 
         
        
         
