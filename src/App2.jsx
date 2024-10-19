@@ -13,16 +13,22 @@ function App2(){
 
 
      useEffect(()=>{
-        fetch("https://dummyjson.com/products")
-        .then(res=>{ return res.json()})
+        fetch("https://dummyjson.com/prducts")
+        .then(res=>{
+           
+            if(!res.ok){
+                throw new Error(`"Check the url -- ${res.url}"`);
+                
+            }
+            return res.json()})
         .then( data => {setBlogs(data.products)
             console.log(data.products)
             setPending(false);
         }
-    );
+    ).catch(err=>{console.log(err.message)})
        
        
-     },[blogs])
+     },[])
 
     return (
         <>
